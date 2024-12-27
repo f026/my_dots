@@ -37,4 +37,4 @@
 <ul>
    <li>nerdfonts</li>
 <ul>
-<img src ="hypr/20241227_16h36m41s_grim.png" width=480 height=270/>
+<img align=center src ="hypr/20241227_16h36m41s_grim.png" width=480 height=270/>
