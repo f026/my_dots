@@ -1,4 +1,4 @@
-<p>It is my simply dots of system!</p>
+<p>It is my simply dots</p>
 <p>Instalation instruction</p>
 <ol>
     <li>git clone https://github.com/f026/my_dots</li>
