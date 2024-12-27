@@ -37,4 +37,4 @@
 <ul>
    <li>nerdfonts</li>
 <ul>
-![screenshot](https://raw.githubusercontent.com/f026/my_dots/main/hypr/20241227_16h36m41s_grim.png)
+<img src ="hypr/20241227_16h36m41s_grim.png" width=200 height=500/>
