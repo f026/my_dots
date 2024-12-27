@@ -37,4 +37,4 @@
 <ul>
    <li>nerdfonts</li>
 <ul>
-![](https://github.com/f026/my_dots/blob/main/hypr/20241227_16h36m41s_grim.png)
+![](https://raw.githubusercontent.com/f026/my_dots/blob/main/hypr/20241227_16h36m41s_grim.png)
