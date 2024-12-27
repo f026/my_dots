@@ -37,4 +37,4 @@
 <ul>
    <li>nerdfonts</li>
 <ul>
-[My_Image](hypr/20241227_16h36m14s_grim.png)
+![My_Image](hypr/20241227_16h36m14s_grim.png)
