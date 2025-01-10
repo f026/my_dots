@@ -1,6 +1,3 @@
-<div align = center>
-<img src ="https://github.com/f026/my_dots/-/raw/main/images/screenshot.png" width=550/></div>
-<img src ="https://github.com/f026/my_dots/-/raw/main/images/nvim.png" width=550/></div>
 <p align="center">Hi! It is my simply dots!</p>
 <p>Instalation instruction</p>
 <ol>
