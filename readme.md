@@ -1,4 +1,4 @@
-<img src ="hypr/20241227_16h36m41s_grim.png" width=500 height=300/>
+<img src ="screenshot.png" width=500 height=300/>
 <p align="center">It is my simply dots</p>
 <p>Instalation instruction</p>
 <ol>
