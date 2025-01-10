@@ -1,5 +1,7 @@
-<img src ="screenshot.png" width=500 height=300/>
-<p align="center">It is my simply dots</p>
+<div align = center>
+<img src ="https://github.com/f026/my_dots/main/images/screenshot.png" width=550/>
+</div>
+<p align="center">Hi! It is my simply dots!</p>
 <p>Instalation instruction</p>
 <ol>
     <li>git clone https://github.com/f026/my_dots</li>
@@ -13,6 +15,7 @@
    <li>alacritty</li>
    <li>vlc</li>
    <li>skype</li>
+   <li>steam</li>
    <li>waybar</li>
    <li>vifm</li>
    <li>hyprpaper</li>
