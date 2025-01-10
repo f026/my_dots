@@ -1,16 +1,22 @@
-local opt = vim.opt
 local arrows = function(mode,key,result)
 	vim.api.nvim_set_keymap(
 		mode,
 		key,
 		result,
 		{noremap = true, silent = true}
-	)
+    )
 end
-opt.number = true
-opt.relativenumber = true 
-opt.termguicolors = true
-opt.formatoptions=ro
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.syntax = 'on'
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.tabpagemax = 50
+vim.opt.termguicolors = true
+vim.opt.formatoptions=ro
 -- disable arrows 
 arrows('','<up>','<nop>')
 arrows('','<down>','<nop>')
