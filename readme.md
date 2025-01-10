@@ -1,3 +1,4 @@
+<img src ="hypr/20241227_16h36m41s_grim.png" width=500 height=300/>
 <p align="center">It is my simply dots</p>
 <p>Instalation instruction</p>
 <ol>
@@ -16,7 +17,6 @@
    <li>vifm</li>
    <li>hyprpaper</li>
    <li>fastfetch</li>
-   <li>vim</li>
    <li>neovim</li>
    <li>grim</li>
    <li>slurp</li>
@@ -30,12 +30,9 @@
 </ul>
 <p>flatpack</p>
 <ul>
-   <li>com.valvesoftware.Steam</li>
-   <li>io.github.zen_browser.zen</li>
+   <li>io.github.Foldex.AdwSteamGtk</li>
 </ul>
 <p>fonts</p>
 <ul>
    <li>nerdfonts</li>
 <ul>
-    <p>
-<img src ="hypr/20241227_16h36m41s_grim.png" width=500 height=300/>
