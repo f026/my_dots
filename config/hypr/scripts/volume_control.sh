@@ -2,10 +2,10 @@ current_volume=$(pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | sed '
 
 # Увеличиваем или уменьшаем громкость
 if [ "$1" == "up" ]; then
-    pactl set-sink-volume @DEFAULT_SINK@ +5%
+    wpctl set-sink-volume @DEFAULT_SINK@ +5%
     new_volume=$(($current_volume + 5))
 elif [ "$1" == "down" ]; then
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
+    wpctl set-sink-volume @DEFAULT_SINK@ -5%
     new_volume=$(($current_volume - 5))
 else
     echo "Usage: $0 {up|down}"
