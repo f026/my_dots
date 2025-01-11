@@ -1,0 +1,132 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+} window#waybar {
+    background-color:#152037;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+@define-color bg #24365C;
+@define-color fg #5074BE;
+
+window#waybar.hidden {
+    opacity: 1;
+}
+#workspaces {
+     margin-left: 10px;
+	background-color: @bg;
+	border: none;
+	border-radius: 10;
+}
+
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+/*window#waybar.termite {
+    background-color: #4A235A;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}*/
+
+button{
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -1px transparent;
+    /* Avoid rounded borders under each button name */
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    /*background: #ffffff;
+    box-shadow: inset 0 -3px #ffffff;********/
+}
+
+#workspaces button {
+    padding: 1 1px;
+    margin-left:4px;
+    border-radius:0px;
+    color:@fg;
+}
+
+#workspaces button.empty{
+    color:white;
+}
+
+#workspaces button.active.empty{
+    box-shadow: inset 0 -3px #ffffff;
+}
+#workspaces button.active{
+    box-shadow: inset 0 -3px #5074BE;
+}
+
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #64727D;
+    /*box-shadow: inset 0 -3px #ffffff;*/
+}
+#clock,
+#language,
+#pulseaudio
+{
+    padding: 2 15;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 4;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #network{
+    margin-right: 4;
+}
+
+#clock {
+    background-color: @bg;
+    color:@fg;
+    border-radius:10;
+
+}
+
+#network {
+	background-color: @bg;
+    color:@fg;
+    border-radius:10;
+
+
+}
+
+#network.disconnected {
+    background-color: #152037;
+}
+
+#pulseaudio {
+    background-color: @bg;
+    color:@fg;
+    border-radius:10;
+
+}
+
+#pulseaudio.muted {
+    background-color: #233559;
+}
+#language {
+    background-color: @bg;
+    color: @fg;
+    border-radius:10;
+
+}
