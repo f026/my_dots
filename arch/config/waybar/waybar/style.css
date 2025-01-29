@@ -93,7 +93,8 @@ button:hover {
 }
 #clock,
 #language,
-#pulseaudio
+#pulseaudio,
+#media
 {
     padding: 2 15;
 }
@@ -141,5 +142,19 @@ button:hover {
     background-color: @bg;
     color: @fg;
     border-radius:10;
+}
 
+#custom-media,
+#custom-media.empty{
+    background-color:@bg;
+    color: @fg;
+    border-radius:10;
+}
+
+#custom-media.title {
+    font-weight: bold;
+}
+
+#custom-media.artist {
+    font-style: italic;
 }
