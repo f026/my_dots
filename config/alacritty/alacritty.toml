@@ -1,0 +1,15 @@
+[window]
+padding.x = 5
+padding.y = 5
+decorations = "Full"
+decorations_theme_variant = "Light" # "Dark"
+[scrolling]
+history= 0
+[font]
+
+normal.family ="monospace"
+bold.family = "monospace"
+italic.family = "monospace"
+bold_italic.family = "monospace"
+
+size = 12.0

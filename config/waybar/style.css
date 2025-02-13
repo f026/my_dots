@@ -1,0 +1,155 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    border-radius:10px;
+}
+
+@define-color bg  #24365C;
+@define-color fg  #5074BE;
+@define-color empty  white;
+@define-color bar  #152037;
+window#waybar {
+    background-color:@bar;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 1;
+}
+
+
+#workspaces {
+	background-color: @bg;
+	border: none;
+	border-radius: 10;
+}
+
+
+/*
+window#waybar.empty {
+    background-color: transparent;
+}
+window#waybar.solo {
+    background-color: #FFFFFF;
+}
+*/
+
+/*window#waybar.termite {
+    background-color: #4A235A;
+}
+
+window#waybar.chromium {
+    background-color: #000000;
+    border: none;
+}*/
+
+button{
+    /* Use box-shadow instead of border so the text isn't offset */
+    box-shadow: inset 0 -1px transparent;
+    transition:none;
+    /* Avoid rounded borders under each button name */
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+button:hover {
+    background: none;
+    border:none;
+    /*box-shadow: inset 0 -3px #ffffff;*/
+    box-shadow: inherit;
+    text-shadow: inherit;
+    padding: 0 3px;
+}
+
+#workspaces button {
+    padding: 1 1px;
+    margin-left:0px;
+    border-radius:0px;
+    color:@fg;
+}
+
+#workspaces button:hover {
+    padding: 0 8px;
+}
+
+#workspaces button.empty{
+    color:@empty;
+}
+
+#mode {
+    background-color: #64727D;
+    /*box-shadow: inset 0 -3px #ffffff;*/
+}
+#clock,
+#language,
+#pulseaudio
+{
+    padding: 2 15;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+.modules-left > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+.modules-right > widget:last-child > #clock{
+    margin-right: 0;
+}
+
+#clock {
+    background-color: @bg;
+    color:@fg;
+    border-radius:10;
+    font-weight:bold;
+}
+
+#network {
+	background-color: @bg;
+    color:@fg;
+    border-radius:10;
+
+
+}
+
+#network.disconnected {
+    background-color: @bg;
+}
+
+#pulseaudio {
+    background-color: @bg;
+    color:@fg;
+    border-radius:10;
+
+}
+
+#pulseaudio.muted {
+    background-color: @bg;
+}
+#language {
+    background-color: @bg;
+    color: @fg;
+    border-radius:10;
+}
+#custom-media
+{
+    color:@fg;
+    margin-right:80px;
+}
+
+#custom-media.empty{
+    background-color:@bg;
+    color: @fg;
+    border-radius:10;
+    margin-right:80;
+}
+
+#media.title {
+    font-weight: bold;
+}
+
+#custom-media.artist {
+    font-style: italic;
+}

@@ -1,0 +1,16 @@
+--base
+require("core/settings")
+require("core/lazy")
+require("core/plugins")
+require("core/colors")
+--plugins
+require("plugins/neotree")
+require("plugins/autotags")
+require("plugins/cmp")
+require("plugins/lualine")
+require("plugins/bufferline")
+require("plugins/toggleterm")
+require("plugins/mason")
+require("plugins/comment")
+--keys
+require("keys/mappings")
