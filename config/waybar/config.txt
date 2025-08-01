@@ -1,10 +1,9 @@
 {
-"output":["HDMI-A-1"],
 "layer": "center", // Waybar at top layer
      "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 2, // Waybar height (to be removed for auto height)
+    "height": 30, // Waybar height (to be removed for auto height)
    "width": 1420, // Waybar width
-    "margin-bottom":2,
+    "margin-bottom":4,
     "spacing":2,
     "include":[
 	    "$HOME/.config/waybar/modules/places.jsonc",

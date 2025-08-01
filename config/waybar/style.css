@@ -5,10 +5,10 @@
     border-radius:10px;
 }
 
-@define-color bg  #24365C;
-@define-color fg  #5074BE;
+@define-color bg  #0d0b33;
+@define-color fg  #0670ba;
 @define-color empty  white;
-@define-color bar  #152037;
+@define-color bar  #100d3c;
 window#waybar {
     background-color:@bar;
     transition-property: background-color;
