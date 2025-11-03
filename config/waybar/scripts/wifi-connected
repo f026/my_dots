@@ -1,0 +1,4 @@
+ nmcli d wifi list
+echo "wrote network name"
+read SSID
+nmcli --ask d wifi connect $SSID

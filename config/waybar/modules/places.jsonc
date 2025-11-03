@@ -10,5 +10,5 @@
         "pulseaudio",
         "network",
         "clock"
-    ],
+    ]
 }

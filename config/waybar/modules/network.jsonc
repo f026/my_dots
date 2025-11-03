@@ -4,6 +4,7 @@
         "format-ethernet": "{ipaddr}/{cidr} ",
         "tooltip":"false",
         "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠"
-    },
-},
+        "format-disconnected": "Disconnected ⚠",
+        "on-click":"alacritty --class=wifi -e ./.config/waybar/scripts/wifi-connected"
+    }
+}

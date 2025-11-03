@@ -5,10 +5,11 @@
     border-radius:10px;
 }
 
-@define-color bg  #0d0b33;
-@define-color fg  #0670ba;
-@define-color empty  white;
-@define-color bar  #100d3c;
+@define-color bg #4a3521;
+@define-color fg #f9c784;
+@define-color empty  #e9dcc9;
+@define-color bar #3c2816;
+@define-color audio #e67e80;
 window#waybar {
     background-color:@bar;
     transition-property: background-color;
@@ -27,14 +28,14 @@ window#waybar.hidden {
 }
 
 
-/*
+
 window#waybar.empty {
     background-color: transparent;
 }
 window#waybar.solo {
     background-color: #FFFFFF;
 }
-*/
+
 
 /*window#waybar.termite {
     background-color: #4A235A;
@@ -135,7 +136,7 @@ button:hover {
 }
 #custom-media
 {
-    color:@fg;
+    color:@audio;
     margin-right:80px;
 }
 

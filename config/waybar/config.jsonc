@@ -1,18 +1,12 @@
 {
-"output":["HDMI-A-1"],
-"layer": "center", // Waybar at top layer
-     "position": "bottom", // Waybar position (top|bottom|left|right)
-    "height": 2, // Waybar height (to be removed for auto height)
-   "width": 1420, // Waybar width
-    "margin-bottom":2,
-    "spacing":2,
-    "include":[
+   "include":[
+       "$HOME/.config/waybar/modules/settings.jsonc",
 	    "$HOME/.config/waybar/modules/places.jsonc",
 	    "$HOME/.config/waybar/modules/workspaces.jsonc",
 	    "$HOME/.config/waybar/modules/language.jsonc",
 	    "$HOME/.config/waybar/modules/clock.jsonc",
 	    "$HOME/.config/waybar/modules/network.jsonc",
 	    "$HOME/.config/waybar/modules/pulseaudio.jsonc",
-	    "$HOME/.config/waybar/modules/media.jsonc",
-    ],
+	    "$HOME/.config/waybar/modules/media.jsonc"
+    ]
 }

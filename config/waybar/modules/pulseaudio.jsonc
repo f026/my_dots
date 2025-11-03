@@ -15,10 +15,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pkill pwvucontrol || pwvucontrol"
+        "on-click":"pkill pwvucontrol || pwvucontrol"
     },
-},
- ,
    	"custom/media": {
 	"format": " {icon} {0} ",
 		"return-type": "json",
@@ -32,5 +30,5 @@
 		"on-scroll-up": "playerctl next",
 		"on-scroll-down": "playerctl previous",
 		"tooltip": false
-	},
+	}
 }
