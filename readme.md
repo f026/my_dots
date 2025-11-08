@@ -1,11 +1,11 @@
 <p> Hi! Это мои доты hyprland</p>
 
 ## Информация о репозитории
-```
+``
 Данное рабочее окружение было построенно вокруг оконного менеджера hyprland на дистрибутиве cachyos.
 Репозиторий включает в себя не только конфиги hyprland,но и терминала,консольного текстового редактора и fastfetch
 Рабочее окружение расчитанно на два монитора.
-```
+``
 ## Основной софт и скрипты
 * wm:`Hyprland`
 * Терминал:`Alacritty`
@@ -17,7 +17,8 @@
 * Обычный файловый менеджер:`nemo`(для браузера)
 * Браузер:`zen`
 * Офис:`onlyoffice`
-* Игрушки:`steam,prismlauncher,portproton`
+* Игрушки:`steam,prismlauncher,portproton,sober`
+* Взять цвет с рабочего стола:`wl-color-picker`
 * Обои:`hyprpapper`
 * Графическое управление аудио:`pwvucontrol`
 * Панелька снизу:`waybar`
@@ -26,17 +27,19 @@
 * Заметки:`obsidian`
 * Медиа проигрыватель:`vlc`
 * Отображение часов в консоли:`tty-clock`
-* Также есть скрипт по подключению к wifi из консоли,расположенный по пути `waybar/scripts`
+* Управление гтк темами:`nwg-look`
+* Также есть скрипт по подключению к wifi из консоли,расположенный по пути `config/waybar/scripts`
 ## Комбинации клавиш
  * `super + return`- терминал
  * `super + esc` - gotop
- * `super + d ` - discord
- * `super + c ` - neovim 
- * `super + x ` - закрыть текущее окно
+ * `super + d` - discord
+ * `super + c` - neovim 
+ * `super + x` - закрыть текущее окно
  * `super + w ` - zen 
  * `super + y ` - zen -e youtube.com 
  * `super + SHIFT + w` - перезапуск waybar     
  * `super + n` - nemo
+ * `super + SHIFT + n` - nwg-look
  * `super + f` - fastfetch
  * `super + q` - выход из окружения
  * `super + e` - vifm
@@ -52,7 +55,7 @@
  * `super + v` - vlc
  * `super + SHIFT + k` - krita
  * `super + SHIFT + x` - wlogout
- * `super +SHIFT + c` - пипетка
+ * `super + SHIFT + c` - wl-color-picker 
  * `super + g` - portproton
  * `super + r` - sober
  * `Переключение между окнами в рабочем пространстве осуществляется по комбинации super + hjkl`
@@ -72,5 +75,6 @@
 ![alt_image](./images/wifi.png)
 ## pwvucontrol
 ![alt_image](./images/pwvucontrol.png)
+<a>P.S:Я не знаю,если честно,как поставить другую тему в pwvucontrol</a>
 # Настоятельно рекомендую сохранить старую конфигурацию в другое место!
 # Удачи!
