@@ -12,5 +12,5 @@
 		"on-scroll-up": "playerctl next",
 		"on-scroll-down": "playerctl previous",
 		"tooltip": false
-	},
+	}
 }

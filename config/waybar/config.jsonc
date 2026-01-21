@@ -6,7 +6,7 @@
 	    "$HOME/.config/waybar/modules/language.jsonc",
 	    "$HOME/.config/waybar/modules/clock.jsonc",
 	    "$HOME/.config/waybar/modules/network.jsonc",
-	    "$HOME/.config/waybar/modules/pulseaudio.jsonc",
+	    "$HOME/.config/waybar/modules/wireplumber.jsonc",
 	    "$HOME/.config/waybar/modules/media.jsonc"
     ]
 }

@@ -84,7 +84,7 @@ button:hover {
 }
 #clock,
 #language,
-#pulseaudio
+#wireplumber
 {
     padding: 2 15;
 }
@@ -119,7 +119,7 @@ button:hover {
     background-color: @bg;
 }
 
-#pulseaudio {
+#wireplumber {
     background-color: @bg;
     color:@fg;
     border-radius:10;

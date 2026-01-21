@@ -1,0 +1,59 @@
+#syshud {
+	background: transparent;
+}
+
+#syshud .box_layout {
+	background: #4a3521;
+	border-radius: 25px;
+	border: 1px solid transparent;
+	margin: 10px;
+}
+
+#syshud scale {
+	margin: 0px;
+	padding: 0px;
+}
+#syshud label {
+	color:#f9c784;
+}
+
+/* Scale */
+#syshud scale {
+	padding: 0px;
+	min-height: 5px;
+	min-width: 5px;
+}
+#syshud scale trough {
+	border-radius: 3px;
+	background: #e9dcc9;
+	min-height: 5px;
+	min-width: 5px;
+	padding: 0px;
+}
+#syshud scale.horizontal highlight {
+	border-radius: 3px;
+	min-height: 5px;
+	min-width: 5px;
+	background: #e67e80;
+	margin: 0px;
+}
+#syshud scale slider {
+	margin: 0px;
+	background: #e67e80;
+	min-height: 5px;
+	min-width: 5px;
+	box-shadow: none;
+	padding: 0px;
+}
+
+/* Levels */
+#syshud .muted {
+}
+#syshud .low {
+}
+#syshud .medium {
+}
+#syshud .high {
+}
+
+

@@ -1,0 +1,15 @@
+{
+    "wirweplumber": {
+        "format":"{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "on-click":"pwvucontrol",
+        "format-source-muted": "",
+        "format-icons": {
+            "default": ["", "", " "]
+        }
+    }
+}
+

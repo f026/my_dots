@@ -7,7 +7,7 @@
     ],
     "modules-right": [
         "hyprland/language",
-        "pulseaudio",
+        "wireplumber",
         "network",
         "clock"
     ]
