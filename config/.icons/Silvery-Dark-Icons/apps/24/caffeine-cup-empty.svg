@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="24"
+   height="24"
+   version="1.1"
+   id="svg12"
+   sodipodi:docname="caffeine-cup-empty.svg"
+   inkscape:version="1.4.2 (unknown)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata18">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs16" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="994"
+     id="namedview14"
+     showgrid="false"
+     inkscape:zoom="19.625001"
+     inkscape:cx="11.388534"
+     inkscape:cy="18.292993"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg12"
+     inkscape:document-rotation="0"
+     inkscape:lockguides="false"
+     inkscape:pagecheckerboard="false"
+     inkscape:showpageshadow="true"
+     inkscape:deskcolor="#201933">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="-14"
+       originy="-46"
+       spacingx="1"
+       spacingy="1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="false" />
+  </sodipodi:namedview>
+  <rect
+     y="0"
+     x="0"
+     height="24"
+     width="24"
+     id="rect817"
+     style="clip-rule:evenodd;fill:#ffffff;fill-opacity:0;fill-rule:evenodd;stroke-width:1.17623;stroke-linejoin:round;stroke-miterlimit:1.41421" />
+  <path
+     id="Cup"
+     class="st0"
+     d="M 6.8437505,8.3091815 H 17.156245 v 6.0817805 c 0,1.67249 -1.39219,3.040882 -3.093738,3.040882 H 9.9374988 c -1.7015612,0 -3.0937483,-1.368392 -3.0937483,-3.040882 z m 0,13.1771885 H 18.187504 c 1.134372,0 2.062496,-0.912271 2.062496,-2.027249 v -1.013647 h -1.031258 v 1.013647 H 14.062507 V 18.445474 H 3.75 c 0,1.672506 1.3921875,3.040896 3.0937505,3.040896 z"
+     style="fill:#cdd8e5;fill-opacity:0.403922;stroke-width:0.283467" />
+  <path
+     id="Cup-s"
+     class="st1"
+     d="M 20.25,19.459121 C 20.25,21.1316 18.857812,22.5 17.156245,22.5 H 6.8437505 V 21.48637 H 17.156245 c 1.134373,0 2.062497,-0.912271 2.062497,-2.027249 z M 4.2656254,11.856887 c 0,-1.114994 0.928125,-2.0272606 2.0624996,-2.0272606 H 6.8437505 V 10.843257 H 6.328125 c -0.5671882,0 -1.0312508,0.456133 -1.0312508,1.01363 v 2.027259 H 4.2656254 Z M 17.156245,9.3228108 v 6.0817832 c 0,1.672478 -1.39219,3.04088 -3.093738,3.04088 H 13.03125 v -1.01363 h 1.031257 c 1.134373,0 2.062498,-0.912261 2.062498,-2.02725 V 9.3228108 Z"
+     style="fill:#eff0f1;fill-opacity:1;stroke-width:0.283467" />
+</svg>
