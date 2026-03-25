@@ -1,7 +1,0 @@
-{
-"hyprland/language": {
-    "format-en": "EN",
-    "format-ru": "RU"
-    //"keyboard-name":"by-tech-gaming-keyboard-1"
-    },
-},

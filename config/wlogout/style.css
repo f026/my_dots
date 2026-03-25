@@ -9,11 +9,11 @@ window {
 
 button {
     border-radius: 8;
-    border-color: #f9c784;
+    border-color: #ebdbb2;
 
-	text-decoration-color: #3c2816;
-    color: #f9c784;
-    background-color: #3c2816;
+	text-decoration-color:#ebdbb2;
+    color: #ebdbb2;
+    background-color: #282828;
 	border-style: solid;
 	border-width: 1px;
 	background-repeat: no-repeat;
@@ -22,7 +22,7 @@ button {
 }
 
 button:focus, button:active, button:hover {
-	background-color: #3c2816;
+	background-color: #282828;
 	outline-style: none;
 }
 

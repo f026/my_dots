@@ -3,9 +3,9 @@
 }
 
 #syshud .box_layout {
-	background: #4a3521;
+	background: #282828;
 	border-radius: 25px;
-	border: 1px solid transparent;
+	border: 1px solid #ebdbb2;
 	margin: 10px;
 }
 
@@ -14,7 +14,7 @@
 	padding: 0px;
 }
 #syshud label {
-	color:#f9c784;
+	color:#ebdbb2;
 }
 
 /* Scale */
@@ -25,7 +25,7 @@
 }
 #syshud scale trough {
 	border-radius: 3px;
-	background: #e9dcc9;
+	background: #ebdbb2;
 	min-height: 5px;
 	min-width: 5px;
 	padding: 0px;
@@ -34,20 +34,13 @@
 	border-radius: 3px;
 	min-height: 5px;
 	min-width: 5px;
-	background: #e67e80;
+	background: #9c9d8a;
 	margin: 0px;
-}
-#syshud scale slider {
-	margin: 0px;
-	background: #e67e80;
-	min-height: 5px;
-	min-width: 5px;
-	box-shadow: none;
-	padding: 0px;
 }
 
 /* Levels */
 #syshud .muted {
+    color:#7d7c80;
 }
 #syshud .low {
 }

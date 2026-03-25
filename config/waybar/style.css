@@ -5,29 +5,22 @@
     border-radius:10px;
 }
 
-@define-color bg #4a3521;
-@define-color fg #f9c784;
-@define-color empty  #e9dcc9;
-@define-color bar #3c2816;
-@define-color audio #e67e80;
+@define-color bg #282828;
+@define-color fg #ebdbb2;
+@define-color empty #fff;
+@define-color bar #282828;
+@define-color audio #ebdbb2;
+
 window#waybar {
     background-color:@bar;
     transition-property: background-color;
     transition-duration: .5s;
+    border:2px solid #ebdbb2;
 }
 
 window#waybar.hidden {
     opacity: 1;
 }
-
-
-#workspaces {
-	background-color: @bg;
-	border: none;
-	border-radius: 10;
-}
-
-
 
 window#waybar.empty {
     background-color: transparent;
@@ -87,6 +80,7 @@ button:hover {
 #wireplumber
 {
     padding: 2 15;
+    border:none;
 }
 
 .modules-left > widget:first-child > #workspaces {
@@ -101,16 +95,12 @@ button:hover {
 }
 
 #clock {
-    background-color: @bg;
     color:@fg;
-    border-radius:10;
     font-weight:bold;
 }
 
 #network {
-	background-color: @bg;
     color:@fg;
-    border-radius:10;
 
 
 }
@@ -120,19 +110,16 @@ button:hover {
 }
 
 #wireplumber {
-    background-color: @bg;
     color:@fg;
-    border-radius:10;
 
 }
 
-#pulseaudio.muted {
-    background-color: @bg;
+#wireplumber.muted {
+    color: @bg;
 }
 #language {
-    background-color: @bg;
     color: @fg;
-    border-radius:10;
+    border:2px solid transparent;
 }
 #custom-media
 {
@@ -143,7 +130,6 @@ button:hover {
 #custom-media.empty{
     background-color:@bg;
     color: @fg;
-    border-radius:10;
     margin-right:80;
 }
 

@@ -4,6 +4,7 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -77,6 +78,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=( git zsh-syntax-highlighting zsh-autosuggestions )
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
@@ -90,11 +92,11 @@ source $ZSH/oh-my-zsh.sh
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
 # else
-#   export EDITOR='mvim'
+#   export EDITOR='nvim'
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+# export ARCHFLAGS="-arch $(uname -m)"
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
@@ -110,19 +112,5 @@ source $ZSH/oh-my-zsh.sh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-if [ -x "$(command -v exa)" ]; then
-    alias ls="exa --long --all --group"
-fi
-alias hypr="start-hyprland"
-alias g++="g++ main.cpp"
-alias e="exit"
-alias clr="clear"
-alias cat="bat"
-alias df="duf"
-alias find="fd"
-alias man="tldr"
-alias du="ncdu" 
-alias ping="gping"
-alias n="neofetch"
 eval "$(zoxide init zsh)"
-
+export YAZI_CONFIG_HOME="$HOME/my_dots/config/yazi"

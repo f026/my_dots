@@ -34,5 +34,6 @@ require("lazy").setup({
          config = true
     },
     {'windwp/nvim-ts-autotag'},
-    {'4513ECHO/vim-readme-viewer'}
+    {'4513ECHO/vim-readme-viewer'},
+    { "ellisonleao/gruvbox.nvim" },
 })
