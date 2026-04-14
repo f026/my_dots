@@ -36,4 +36,12 @@ require("lazy").setup({
     {'windwp/nvim-ts-autotag'},
     {'4513ECHO/vim-readme-viewer'},
     { "ellisonleao/gruvbox.nvim" },
+    { "selimacerbas/markdown-preview.nvim",
+    dependencies = { "selimacerbas/live-server.nvim" },
+    config = function()
+    require("markdown_preview").setup({
+      -- Настройки по умолчанию уже хороши
+    })
+  end,
+}
 })

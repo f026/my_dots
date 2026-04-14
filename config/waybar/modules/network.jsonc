@@ -5,6 +5,6 @@
         "tooltip":"false",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
-        "on-click":"alacritty --class=wifi -e ./.config/waybar/scripts/wifi-connected"
+        "on-click":"foot --app-id=wifi -e ./.config/waybar/scripts/wifi-connected"
     }
 }

@@ -5,7 +5,7 @@
         "format-bluetooth-muted": " {icon} {format_source}",
         "format-muted": " {format_source}",
         "format-source": "{volume}% ",
-        "on-click":"pwvucontrol",
+        "on-click":"foot -e wiremix",
         "format-source-muted": "",
         "format-icons": {
             "default": ["", "", " "]

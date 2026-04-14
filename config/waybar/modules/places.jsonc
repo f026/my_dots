@@ -6,7 +6,6 @@
         "custom/media"
     ],
     "modules-right": [
-        "custom/weather",
         "hyprland/language",
         "wireplumber",
         "network",

@@ -1,9 +1,10 @@
 {
+// "output":["eDP-1"],
 "output":["HDMI-A-1"],
 "layer": "center", // Waybar at top layer
      "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 2, // Waybar height (to be removed for auto height)
+   // "width":1080, // Waybar width
    "width": 1882, // Waybar width
     "margin-bottom":2,
-    "spacing":2
-}
+    "spacing":2 }

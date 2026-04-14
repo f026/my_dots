@@ -1,6 +1,8 @@
-#syshud {
-	background: transparent;
-}
+/* #syshud { */
+/* 	background: transparent; */
+/* } */
+#window
+{background:transparent;}
 
 #syshud .box_layout {
 	background: #282828;

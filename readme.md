@@ -22,7 +22,7 @@
 * Игрушки:`steam,prismlauncher,portproton,`
 * Взять цвет с рабочего стола:`wl-color-picker`
 * Обои:`swaybg`
-* Графическое управление аудио:`pwvucontrol`
+* Управление аудио:`wiremix`
 * Панелька снизу:`waybar`
 * Программа для скриншотов:`hyprshot`
 * Графический редактор:`krita`
@@ -81,8 +81,7 @@
 ![alt_image](./images/fastfetch.png)
 ## yazi 
 ![alt_image](./images/yazi.png)
-<!-- ## pwvucontrol -->
-<!-- ![alt_image](./images/pwvucontrol.png) -->
+# Обои для системы нашел [Тут](https://github.com/AngelJumbo/gruvbox-wallpapers/tree/main/wallpapers%2Fminimalistic)
 # На своей машине я подключил конфигурацию через ссылки ln -sf,но вы можете подключать конфигурацию,как вам удобно
 # так же использованны папки .themes и .icons для nwg-look
 # Настоятельно рекомендую сохранить старую конфигурацию в другое место!
