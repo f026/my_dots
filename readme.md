@@ -1,4 +1,4 @@
-<p> Hi! Это мои доты hyprland</p>
+<p>Hi! Это мои доты hyprland</p>
 
 ## Информация о репозитории
 ``
@@ -15,11 +15,11 @@
 * Консольный мониторинг процессов:`gotop`
 * Консольный  файловый менеджер:`yazi`
 * Обычный файловый менеджер:`nemo`(для браузера)
-* Графическая программа для аудио:`pwvucontrol`(Ставил из AUR)
+* Графическая программа для аудио:`wiremix`(Ставил из AUR)
 * Браузер:`zen`
-* Мессенжеры:`telegram-desktop,ruscord`(Последний ставил из github) 
+* Мессенжеры:`telegram-desktop,discord` 
 * Офис:`onlyoffice`
-* Игрушки:`steam,prismlauncher,portproton,`
+* Игрушки:`steam,prismlauncher,portproton`
 * Взять цвет с рабочего стола:`wl-color-picker`
 * Обои:`swaybg`
 * Управление аудио:`wiremix`
@@ -41,7 +41,7 @@
 ## Комбинации клавиш
  * `super + return`- терминал
  * `super + esc` - gotop
- * `super + d` - ruscord
+ * `super + d` - discord
  * `super + c` - neovim 
  * `super + x` - закрыть текущее окно
  * `super + w ` - zen 
