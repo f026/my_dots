@@ -1,0 +1,12 @@
+require("modules.autostart")
+require("modules.decorations")
+require("modules.dwindle")
+require("modules.input")
+require("modules.keybinds")
+require("modules.settings")
+require("modules.monitors")
+require("modules.misc")
+require("modules.windowrule")
+require("modules.workspaces")
+require("modules.xwayland")
+

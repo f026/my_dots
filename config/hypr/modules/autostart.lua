@@ -1,0 +1,7 @@
+hl.on("hyprland.start",function ()
+    hl.exec_cmd("awww-daemon")
+    hl.exec_cmd("quickshell")
+    -- hl.exec_cmd("swaybg -i ~/.config/hypr/wallpapers/gruvbox.png")
+    -- hl.exec_cmd("snappy-switcher --daemon")
+    hl.exec_cmd("syshud")
+end)
