@@ -7,33 +7,9 @@
 Рабочее окружение расчитанно на два монитора.
 ``
 ## Основной софт и скрипты
-* wm:`Hyprland`
-* Терминал:`foot`
-* Меню выхода:`wlogout`(Ставил из AUR)
-* Экран блокировки:`hyprlock`
-* Консольный текстовый редактор:`neovim`
-* Консольный мониторинг процессов:`gotop`
-* Консольный  файловый менеджер:`yazi`
-* Графическая программа для аудио:`wiremix`(Ставил из AUR)
-* Браузер:`zen`
-* Мессенжеры:`telegram-desktop,discord` 
-* Офис:`onlyoffice`
-* Игрушки:`steam,prismlauncher,portproton`
-* Взять цвет с рабочего стола:`wl-color-picker`
-* Обои:`awww`
-* Управление аудио:`wiremix`
-* Панелька снизу:`quickshell`
-* Программа для скриншотов:`hyprshot`
-* Графический редактор:`krita`
-* Заметки:`obsidian`
-* Медиа проигрыватель:`vlc`
-* Отображение часов в консоли:`tty-clock`
-* Управление гтк темами:`nwg-look`
-* аналог cd:`zoxide`
-* Popup громкости: `syshud`
-* Оболочка для консоли:`zsh`
-* Тема для zsh:`oh-my-zsh`
-* Аналог ls: `lsd`
+# Все необходимое ПО находится в папке pkg
+# Для дистрибутивов на archlinux рекомендую:
+* `cd my_dots/git && sudo pacman -S --needed - < pkglist.txt`
 # Весь софт,который можно было настроить через конфиги,настроен
 ## Комбинации клавиш
  * `super + return`- терминал
@@ -44,6 +20,7 @@
  * `super + w ` - zen 
  * `super + y ` - zen -e youtube.com 
  * `super + f` - fastfetch
+ * `alt+tab` - snappy-switcher
  * `super + q` - выход из окружения
  * `super + e` - yazi
  * `super + s` - стим

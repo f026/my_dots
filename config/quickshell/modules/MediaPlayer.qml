@@ -44,9 +44,9 @@ Rectangle {
         id: marqueeContainer
         anchors {
             left: playPauseIcon.right
-            leftMargin: 6
+            leftMargin: 0
             right: parent.right
-            rightMargin: 8
+            rightMargin: 0
             verticalCenter: parent.verticalCenter
         }
         height: 24
@@ -154,14 +154,37 @@ Rectangle {
         onTriggered: statusProc.running = true
     }
     
-    MouseArea {
-        anchors.fill: parent
-        cursorShape: Qt.PointingHandCursor
-        onClicked: {
-            // Quickshell.execDetached(["playerctl", "play-pause"])
-            Qt.callLater(function() { statusProc.running = true }, 50)
-        }
-    }
+    // MouseArea {
+    //     anchors.fill: parent
+    //     cursorShape: Qt.PointingHandCursor
+    //     onClicked: {
+    //         // Quickshell.execDetached(["playerctl", "play-pause"])
+    //         Qt.callLater(function() { statusProc.running = true }, 50)
+    //     }
+    // }
+     MouseArea {
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        acceptedButtons: Qt.AllButtons
+
+                        onEntered: playerItem.hovered = true
+                        onExited: playerItem.hovered = false
+                        onClicked: function(mouse) {
+                            // if (mouse.button === Qt.LeftButton) {
+                            //     Quickshell.execDetached(["sh", "-c", "playerctl play-pause"])
+                            // }
+                            if (mouse.button === Qt.RightButton) {
+                                playerOpen = playerOpen
+                            }
+                        }
+                        // onWheel: function(wheel) {
+                        //     if (wheel.angleDelta.y > 0) {
+                        //         Quickshell.execDetached(["sh", "-c", "playerctl next"])
+                        //     } else if (wheel.angleDelta.y < 0) {
+                        //         Quickshell.execDetached(["sh", "-c", "playerctl previous"])
+                        //     }
+                        // }
+                    }
     
     Component.onCompleted: {
         mediaProc.running = true

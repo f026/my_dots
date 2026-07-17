@@ -41,7 +41,7 @@ Item {
         Text {
             anchors.centerIn: parent
             text: "󰪛"
-            font.pixelSize: 16
+            font.pixelSize: 17
             font.bold: true
             color: capsActive ? "#ebdbb2" : "transparent"
             Behavior on color {

@@ -1,7 +1,7 @@
 hl.window_rule({
-    name = "foot",
+    name = "Alacritty",
     match = {
-        class = "foot"
+        class = "Alacritty"
     },
     opacity = 0.85,
     border_size = 0,
@@ -29,9 +29,29 @@ hl.window_rule({
     float = true,
     workspace = 1
 })
+hl.window_rule({
+    name = "nvim",
+    match = {
+        class = "editor"
+
+    },
+    border_size = 0,
+    workspace = 1,
+    opacity = 0.8
+})
+hl.window_rule({
+    name = "zapret",
+    match = {
+        class = "zapret"
+    },
+    border_size = 0,
+    size = "520 360",
+    float = true,
+    workspace = 1
+})
 
 hl.window_rule({
-    name = "zen",
+    name = "zen-browser",
     match = {
         class = "zen"
     },
@@ -57,7 +77,7 @@ hl.window_rule({
 hl.window_rule({
     name = "upload",
     match = {
-        title = "*.Выгрузка файла - VK Мессенджер — Zen Browser.*"
+        title = "*.Выгрузка файла... .*"
     },
     opacity = 0.85,
     float = true,
@@ -90,7 +110,7 @@ hl.window_rule({
 hl.window_rule({
     name = "prismlauncher*",
     match = {
-        title = ".*Новый экземпляр.*|.*Подождите.*"
+        title = "prismlauncher*"
     },
     float = true,
     size = "740 560",
@@ -100,10 +120,11 @@ hl.window_rule({
 
 
 hl.window_rule({
-    name = "minecraft",
+    name = "Minecraft",
     match = {
-        class ="Minecraft*"
+        class ="Minecraft.*"
     },
+    border_size = 0,
     workspace = 3
 })
 
@@ -124,6 +145,18 @@ hl.window_rule({
     },
     border_size = 0,
     opacity = 0.85,
+    center = true,
+    workspace = 4
+})
+
+hl.window_rule({
+    name = "ruscord",
+    match = {
+        class = "Ruscord Net"
+    },
+    border_size = 0,
+    opacity = 0.85,
+    center = true,
     workspace = 4
 })
 
@@ -177,7 +210,8 @@ hl.window_rule({
     match = {
         class = "btop"
     },
-    workspace = 9
+    workspace = 9,
+    border_size = 0
 })
 
 hl.window_rule({
@@ -185,6 +219,7 @@ hl.window_rule({
     match = {
         class = "Happ"
     },
+    border_size = 0,
     float = true,
     size = "740 560",
     center = true,
@@ -205,14 +240,8 @@ hl.window_rule({
         title = ".*Открыть документ|Сохранить как.*"
     },
     float = 1,
+    border_size = 0,
     center = 1,
     size = "740 560"
 })
 
--- hl.window_rule({
---     name = "no-border-dwindle-window",
---     match = {
---         workspace = "w[tv1]"
---     },
---     border_size = 0
--- })
