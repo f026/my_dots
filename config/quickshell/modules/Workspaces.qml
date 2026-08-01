@@ -32,7 +32,7 @@ Item {
                 Text {
                     anchors.centerIn: parent
                     text: getIcon(isActive)
-                    color: isActive ? "#ebdbb2" : "white"
+                    color: isActive ? "#ebdbb2" : "#504945"
                     font {
                         family: "Hack Nerd Font"
                         pixelSize: 16  // увеличен для лучшего отображения иконок

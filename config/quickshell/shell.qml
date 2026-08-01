@@ -38,8 +38,7 @@ ShellRoot {
                 Workspaces { }
                 Item { Layout.fillWidth: true }
                 MediaPlayer { }
-
-                Item { Layout.fillWidth: true }
+                PopupSys { }
 
                 RowLayout {
                 spacing: 26

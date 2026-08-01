@@ -9,7 +9,7 @@
 ## Основной софт и скрипты
 # Все необходимое ПО находится в папке pkg
 # Для дистрибутивов на archlinux рекомендую:
-* `cd my_dots/git && sudo pacman -S --needed - < pkglist.txt`
+* `cd my_dots/config/pkg && sudo pacman -S --needed - < pkglist.txt && yay -S --needed - < pkglist-aur.txt`
 # Весь софт,который можно было настроить через конфиги,настроен
 ## Комбинации клавиш
  * `super + return`- терминал

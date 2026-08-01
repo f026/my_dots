@@ -40,13 +40,14 @@ hl.window_rule({
     opacity = 0.8
 })
 hl.window_rule({
-    name = "zapret",
+    name = "wl-color-picker",
     match = {
-        class = "zapret"
+        title = ".*Copy color to Clipboard.*"
     },
     border_size = 0,
     size = "520 360",
     float = true,
+    center = true,
     workspace = 1
 })
 
@@ -69,7 +70,7 @@ hl.window_rule({
 hl.window_rule({
     name = "Library",
     match = {
-        title = ".*Библиотека.*"
+        title = ".*Library.*"
     },
     float = true,
     size = "740 560"
@@ -94,7 +95,16 @@ hl.window_rule({
     border_size = 0,
     workspace = 3
 })
+hl.window_rule({
+    name = "ETS2",
+    match={
+        title = ".*Euro Truck Simulator 2.*",
+    },
+    border_size = 0,
+    workspace = 3,
+    fullscreen = true
 
+})
 
 hl.window_rule({
     name = "prismlauncher",
@@ -229,8 +239,9 @@ hl.window_rule({
 hl.window_rule({
     name = "picture in picture",
     match = {
-        title = ".*Картинка в картинке.*"
+        title = ".*Picture-in-Picture.*"
     },
+    rounding = 0,
     workspace = 10
 })
 

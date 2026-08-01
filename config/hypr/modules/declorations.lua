@@ -7,7 +7,7 @@ vars.FASTFETCH = vars.TERMINAL.. " --class=ff -e sh -c 'fastfetch; exec zsh'"
 vars.TOP = vars.TERMINAL.. " --class=btop -e btop"
 vars.ZAPRET = vars.TERMINAL.. " --class=zapret -e zapret"
 vars.BROWSER = "zen-browser"
-vars.SWITCHER = "snappy-switcher next"
+vars.SWITCHER = "snappy-switcher next&&sleep 2&&snappy-switcher select"
 vars.YOUTUBE = vars.BROWSER.. " youtube.com"
 vars.COLORPICKER = "wl-color-picker"
 vars.RUSCORD = "flatpak run net.russcord.app"
@@ -15,8 +15,8 @@ vars.DISCORD = vars.BROWSER.. " discord.com/app"
 vars.SOUNDPAD = "pwsp-gui"
 vars.EXIT = "killall Hyprland"
 vars.ROBLOX = "flatpak run org.vinegarhq.Sober"
+vars.adw_steam_gtk = "flatpak run io.github.Foldex.AdwSteamGtk"
 --Мониторы
 vars.MAIN_MONITOR = "HDMI-A-1"
 vars.SECOND_MONITOR = "eDP-1"
-
 return vars

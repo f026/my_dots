@@ -1,0 +1,11 @@
+gotop
+happ-desktop-bin
+omikuji-bin
+onlyoffice-bin
+portproton
+snappy-switcher
+wl-color-picker
+wlogout
+yay
+yay-debug
+zen-browser-bin

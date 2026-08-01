@@ -27,6 +27,8 @@ WlrLayershell {
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
         clip: true
-        source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/linux.png" + staticBust
+        source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/atomic_heart.jpg" + staticBust 
+        // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/linux.png" + staticBust 
+        // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/art__pastel_clouds_dreamlike.jpg" + staticBust
     }
 }

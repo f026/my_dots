@@ -7,7 +7,7 @@ Rectangle {
     color: "transparent"
     radius: 6
     height: 30
-    width: 220
+    width: 222
     clip: true
     
     // Скрываем модуль, если нет трека

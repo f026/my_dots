@@ -2,7 +2,9 @@
 /* 	background: transparent; */
 /* } */
 #window
-{background:transparent;}
+{
+background:transparent;
+}
 
 #syshud .box_layout {
 	background: #282828;
@@ -26,17 +28,28 @@
 	min-width: 5px;
 }
 #syshud scale trough {
+    border:none;
 	border-radius: 3px;
-	background: #ebdbb2;
+	background: #282828;
 	min-height: 5px;
 	min-width: 5px;
 	padding: 0px;
 }
+#syshud scale slider {
+    min-width: 0px;
+    min-height: 0px;
+    margin: 0px;
+    padding: 0px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
 #syshud scale.horizontal highlight {
 	border-radius: 3px;
+    border-color:transparent;
 	min-height: 5px;
 	min-width: 5px;
-	background: #9c9d8a;
+	background: #ebdbb2;
 	margin: 0px;
 }
 
@@ -45,10 +58,13 @@
     color:#7d7c80;
 }
 #syshud .low {
+    color:#ebdbb2;
 }
 #syshud .medium {
+    color:#ebdbb2;
 }
 #syshud .high {
+    color:#ebdbb2;
 }
 
 
