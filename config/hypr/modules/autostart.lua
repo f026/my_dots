@@ -1,6 +1,7 @@
 hl.on("hyprland.start",function ()
     hl.exec_cmd("quickshell -d")
     hl.exec_cmd("snappy-switcher --daemon") 
+    hl.exec_cmd("happ")
     -- hl.exec_cmd("pwsp-daemon")
     hl.exec_cmd("Xwayland")
 end)

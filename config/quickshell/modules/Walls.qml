@@ -26,7 +26,9 @@ WlrLayershell {
         visible: type === 1
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-        clip: true
+        clip: true 
+        // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/peter-grifin.jpg" + staticBust 
+        // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/1203-10.png" + staticBust 
         source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/atomic_heart.jpg" + staticBust 
         // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/linux.png" + staticBust 
         // source: "file://" + Quickshell.env("HOME") + "/.config/hypr/wallpapers/art__pastel_clouds_dreamlike.jpg" + staticBust

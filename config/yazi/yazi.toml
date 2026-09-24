@@ -4,3 +4,5 @@ show_hidden = true
 edit = [
     { run = 'nvim "$@"', block = true, for = "unix" },
 ]
+[preview]
+image_delay = 0

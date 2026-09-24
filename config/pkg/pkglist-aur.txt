@@ -6,6 +6,4 @@ portproton
 snappy-switcher
 wl-color-picker
 wlogout
-yay
-yay-debug
 zen-browser-bin

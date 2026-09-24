@@ -10,14 +10,15 @@ ShellRoot {
         screen: Quickshell.screens.find(s => s.name === "HDMI-A-1")
     }
     // Обои на второй монитор
-    Walls {
-        screen: Quickshell.screens.find(s => s.name === "eDP-1")
-    }
+    // Walls {
+    //     screen: Quickshell.screens.find(s => s.name === "eDP-1")
+    // }
 
     PanelWindow {
         anchors {
             bottom: true
         }
+        WindowSwitcher { }
         screen: Quickshell.screens.find(screen => screen.name === "HDMI-A-1")
         width: 1200
         height: 20
@@ -37,16 +38,14 @@ ShellRoot {
 
                 Workspaces { }
                 Item { Layout.fillWidth: true }
-                MediaPlayer { }
                 PopupSys { }
+                MediaPlayer { }
 
                 RowLayout {
                 spacing: 26
                     Caps {}
                     KeyboardLayout {}
-                    Network {}
                     Clock {}
-                    // BatteryIndicator{}
                 }
             }
         }

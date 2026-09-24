@@ -29,7 +29,7 @@ Item {
     Rectangle {
         anchors {
             fill: parent
-             rightMargin:-60
+             rightMargin:-48
              topMargin:-10
         }
         radius: 6

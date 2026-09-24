@@ -40,14 +40,14 @@ Item {
         id: kbRow 
         anchors{
             top:parent.top
-            topMargin:-2
-            rightMargin:0
+            topMargin:-1
+            rightMargin:20
             right:parent.right
         }
         spacing: 2
         Text {
             font.family: "Mononoki Nerd Font Propo"
-            font.pixelSize: 15
+            font.pixelSize: 14
             anchors.verticalCenter: parent.verticalCenter
         }
 

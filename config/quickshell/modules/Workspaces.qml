@@ -3,31 +3,31 @@ import Quickshell
 import Quickshell.Hyprland
 
 Item {
-    height: 30  // Высота контейнера
+    height: 30
     width: childrenRect.width
     
     Row {
         id: row
-        spacing: -4   // положительный отступ между иконками
+        spacing: -2
         
         anchors {
             top: parent.top
-            topMargin: -2 // отступ сверху
+            topMargin: -2
             left: parent.left
-            leftMargin: 8  // отступ слева
+            leftMargin: 8
         }
         
         Repeater {
-            model: 10
+            model: Hyprland.workspaces  // Используем модель воркспейсов
             
             Rectangle {
-                width: 24   // фиксированная ширина
-                height: 24  // фиксированная высота
-                radius: 12  // круглые иконки
+                width: 24
+                height: 26
+                radius: 12
+                visible: isActive || modelData.windows.length > 0  // Показываем только активный или с окнами
+                property bool isActive: modelData.id === Hyprland.focusedWorkspace.id
                 
-                property bool isActive: Hyprland.focusedWorkspace?.id === index + 1
-                
-                color: isActive ? "transparent" : "transparent"
+                color: "transparent"
                 
                 Text {
                     anchors.centerIn: parent
@@ -35,13 +35,14 @@ Item {
                     color: isActive ? "#ebdbb2" : "#504945"
                     font {
                         family: "Hack Nerd Font"
-                        pixelSize: 16  // увеличен для лучшего отображения иконок
+                        weight: Font.Bold
+                        pixelSize: 26
                     }
                 }
                 
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: Hyprland.dispatch("workspace", index + 1)
+                    onClicked: Hyprland.dispatch("workspace", modelData.id)
                 }
             }
         }
@@ -49,9 +50,9 @@ Item {
     
     function getIcon(isActive) {
         if (isActive) {
-            return ""      // активный
+            return ""  // активный
         } else {
-            return "󰧞"      // неактивный
+            return "󰧟"  // неактивный с окнами
         }
     }
 }

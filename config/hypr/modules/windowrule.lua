@@ -1,9 +1,10 @@
+local dec = require("modules.declorations")
 hl.window_rule({
-    name = "Alacritty",
+    name = "Terminal",
     match = {
-        class = "Alacritty"
+        class = "kitty"
     },
-    opacity = 0.85,
+    opacity = 0.8 ,
     border_size = 0,
     workspace = 1
 })
@@ -12,9 +13,9 @@ hl.window_rule({
     match = {
         class = "ff"
     },
-    opacity = 0.8,
+    opacity = 0.6,
     border_size = 0,
-    size = "740 460",
+    size = dec.SIZE_WINDOW,
     float = true,
     workspace = 1
 })
@@ -25,7 +26,7 @@ hl.window_rule({
     },
     opacity = 0.8,
     border_size = 0,
-    size = "940 560",
+    size = dec.SIZE_WINDOW,
     float = true,
     workspace = 1
 })
@@ -36,7 +37,7 @@ hl.window_rule({
 
     },
     border_size = 0,
-    workspace = 1,
+    workspace = 9,
     opacity = 0.8
 })
 hl.window_rule({
@@ -73,7 +74,7 @@ hl.window_rule({
         title = ".*Library.*"
     },
     float = true,
-    size = "740 560"
+    size = dec.SIZE_WINDOW
 })
 hl.window_rule({
     name = "upload",
@@ -82,7 +83,7 @@ hl.window_rule({
     },
     opacity = 0.85,
     float = true,
-    size = "740 560",
+    size = dec.SIZE_WINDOW,
     border_size = 0
 })
 
@@ -113,7 +114,7 @@ hl.window_rule({
     },
     border_size = 0,
     opacity = 0.85,
-    size = "940 560",
+    size = dec.SIZE_WINDOW,
     float = true,
     workspace = 3
 })
@@ -123,8 +124,18 @@ hl.window_rule({
         title = "prismlauncher*"
     },
     float = true,
-    size = "740 560",
+    size = dec.SIZE_WINDOW,
     float = 1,
+    workspace = 3
+})
+hl.window_rule({
+    name = "prismlauncher*",
+    match = {
+        title = ".*Подождите*.*"
+    },
+    float = true,
+    center = true,
+    size = dec.SIZE_WINDOW,
     workspace = 3
 })
 
@@ -144,7 +155,7 @@ hl.window_rule({
         class = "org.telegram.desktop"
     },
     border_size = 0,
-    opacity = 0.85,
+    opacity = 0.9,
     workspace = 4
 })
 
@@ -176,6 +187,7 @@ hl.window_rule({
         class = "ONLYOFFICE"
     },
     border_size = 0,
+    center = true,
     workspace = 5
 })
 
@@ -203,7 +215,7 @@ hl.window_rule({
     },
     float = true,
     center = 1,
-    size = "740 560"
+    size = dec.SIZE_WINDOW
 })
 
 hl.window_rule({
@@ -216,34 +228,25 @@ hl.window_rule({
 })
 
 hl.window_rule({
-    name = "btop",
-    match = {
-        class = "btop"
-    },
-    workspace = 9,
-    border_size = 0
-})
-
-hl.window_rule({
     name = "happ",
     match = {
         class = "Happ"
     },
     border_size = 0,
-    float = true,
-    size = "740 560",
-    center = true,
-    workspace = 9
+    float = 1,
+    center = 1,
+    size = dec.SIZE_WINDOW,
+    workspace = 11,
 })
 
-hl.window_rule({
-    name = "picture in picture",
-    match = {
-        title = ".*Picture-in-Picture.*"
-    },
-    rounding = 0,
-    workspace = 10
-})
+-- hl.window_rule({
+--     name = "picture in picture",
+--     match = {
+--         title = ".*Picture-in-Picture.*"
+--     },
+--     rounding = 0,
+--     workspace = 10
+-- })
 
 hl.window_rule({
     name = "files",
@@ -253,6 +256,6 @@ hl.window_rule({
     float = 1,
     border_size = 0,
     center = 1,
-    size = "740 560"
+    size = dec.SIZE_WINDOW,
 })
 

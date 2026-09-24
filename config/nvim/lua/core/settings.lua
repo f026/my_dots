@@ -19,8 +19,9 @@ vim.opt.termguicolors = true
 vim.opt.formatoptions=ro
 vim.opt.foldmethod=syntax
 vim.opt.foldlevelstart=99
+vim.opt.clipboard = "unnamedplus"
 -- disable arrows 
--- arrows('','<up>','<nop>')
--- arrows('','<down>','<nop>')
--- arrows('','<left>','<nop>')
--- arrows('','<right>','<nop>')
+arrows('','<up>','<nop>')
+arrows('','<down>','<nop>')
+arrows('','<left>','<nop>')
+arrows('','<right>','<nop>')

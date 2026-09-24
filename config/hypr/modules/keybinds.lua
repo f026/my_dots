@@ -4,11 +4,9 @@ hl.bind("SUPER+G",hl.dsp.exec_cmd("portproton"))
 hl.bind("SUPER + F", hl.dsp.exec_cmd(dec.FASTFETCH))
 hl.bind("SUPER + Escape", hl.dsp.exec_cmd(dec.TOP))
 hl.bind("SUPER + D",hl.dsp.exec_cmd(dec.DISCORD))
-hl.bind("SUPER + R",hl.dsp.exec_cmd(dec.RUSCORD))
-hl.bind("SUPER + SHIFT + R",hl.dsp.exec_cmd(dec.ROBLOX))
 hl.bind("SUPER + E", hl.dsp.exec_cmd(dec.EXPLORER))
 hl.bind("SUPER + S",hl.dsp.exec_cmd("steam"))
-hl.bind("SUPER + SHIFT + S",hl.dsp.exec_cmd(dec.adw_steam_gtk))
+hl.bind("SUPER + SHIFT + S",hl.dsp.exec_cmd("adwaita-steam-gtk"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd(dec.BROWSER))
 hl.bind("SUPER + X", hl.dsp.window.close())
 hl.bind("SUPER + T",hl.dsp.exec_cmd("Telegram"))
@@ -26,7 +24,7 @@ hl.bind("SUPER + Y",hl.dsp.exec_cmd(dec.YOUTUBE))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(dec.SWITCHER))
 hl.bind("SUPER + K",hl.dsp.exec_cmd("krita"))
 hl.bind("SUPER + H",hl.dsp.exec_cmd("happ"))
-hl.bind("SUPER + Z",hl.dsp.exec_cmd(dec.ZAPRET))
+hl.bind("SUPER + SHIFT + W",hl.dsp.exec_cmd("qs ipc call mixer toggle"))
 --Переключение окон в monocle layout
 hl.bind("SUPER + Right",hl.dsp.window.cycle_next({ tiled = true }))
 -- Переключение workspace
@@ -55,4 +53,13 @@ hl.bind("XF86AudioRaiseVolume",hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_S
 hl.bind("XF86AudioLowerVolume",hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_SINK@ 5%-"))
 --Управление воспроизведением
 hl.bind("XF86AudioPlay",hl.dsp.exec_cmd("playerctl play-pause"))
+--Отключение экрана ноутбука при закрытии крышки
+-- Отключаем монитор при закрытии крышки
+hl.bind("switch:on:Lid Switch", function()
+    hl.monitor({ output = "eDP-1", disabled = true })
+end, { locked = true })
 
+-- Включаем монитор обратно при открытии крышки
+-- hl.bind("switch:off:Lid Switch", function()
+--     hl.monitor({ output = "eDP-1", disabled = false, mode = "preferred", position = "auto", scale = "auto" })
+-- end, { locked = true })

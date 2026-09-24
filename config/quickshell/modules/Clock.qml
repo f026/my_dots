@@ -9,12 +9,11 @@ Rectangle {
     Text {
         id: clockText
         color: "#ebdbb2"
-        font.pixelSize: 12
+        font.pixelSize: 14
         text: "time"
         anchors{
             top:parent.top
-            topMargin:2
-            rightMargin:12
+            rightMargin:10
             right:parent.right
         }
 

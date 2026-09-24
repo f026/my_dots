@@ -5,7 +5,7 @@ require("core/plugins")
 require("core/colors")
 --plugins
 require("plugins/neotree")
-require("plugins/autotags")
+-- require("plugins/autotags")
 require("plugins/cmp")
 require("plugins/lualine")
 require("plugins/bufferline")
