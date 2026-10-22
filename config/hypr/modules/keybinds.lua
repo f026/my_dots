@@ -24,7 +24,6 @@ hl.bind("SUPER + Y",hl.dsp.exec_cmd(dec.YOUTUBE))
 hl.bind("ALT + Tab", hl.dsp.exec_cmd(dec.SWITCHER))
 hl.bind("SUPER + K",hl.dsp.exec_cmd("krita"))
 hl.bind("SUPER + H",hl.dsp.exec_cmd("happ"))
-hl.bind("SUPER + SHIFT + W",hl.dsp.exec_cmd("qs ipc call mixer toggle"))
 --Переключение окон в monocle layout
 hl.bind("SUPER + Right",hl.dsp.window.cycle_next({ tiled = true }))
 -- Переключение workspace

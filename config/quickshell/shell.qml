@@ -18,7 +18,7 @@ ShellRoot {
         anchors {
             bottom: true
         }
-        WindowSwitcher { }
+        Switcher { }
         screen: Quickshell.screens.find(screen => screen.name === "HDMI-A-1")
         width: 1200
         height: 20
@@ -40,7 +40,6 @@ ShellRoot {
                 Item { Layout.fillWidth: true }
                 PopupSys { }
                 MediaPlayer { }
-
                 RowLayout {
                 spacing: 26
                     Caps {}

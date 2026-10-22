@@ -1,6 +1,5 @@
 gotop
 happ-desktop-bin
-omikuji-bin
 onlyoffice-bin
 portproton
 snappy-switcher

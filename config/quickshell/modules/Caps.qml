@@ -20,7 +20,7 @@ Item {
 
     Process {
         id: capsProcess
-        command: ["sh", "-c", "cat /sys/class/leds/input3::capslock/brightness"]
+        command: ["sh", "-c", "cat /sys/class/leds/input2::capslock/brightness"]
         stdout: SplitParser {
             onRead: data => capsActive = data.trim() === "1"
         }

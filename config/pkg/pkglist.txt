@@ -1,4 +1,4 @@
-alacritty
+kitty
 base
 base-devel
 btop
@@ -23,8 +23,6 @@ jdk-openjdk
 krita
 linux
 linux-firmware
-linux-zen
-linux-zen-headers
 lsd
 lsp-plugins
 lsp-plugins-lv2
@@ -57,7 +55,6 @@ prismlauncher
 python
 qt6-multimedia
 quickshell
-refind
 ripgrep
 steam
 sudo
@@ -152,6 +149,3 @@ xdg-desktop-portal-hyprland
 xdg-desktop-portal-wlr
 yazi
 zip
-zoxide
-zsh
-zsh-completions

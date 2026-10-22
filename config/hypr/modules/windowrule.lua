@@ -16,6 +16,7 @@ hl.window_rule({
     opacity = 0.6,
     border_size = 0,
     size = dec.SIZE_WINDOW,
+    center = true,
     float = true,
     workspace = 1
 })
@@ -27,6 +28,7 @@ hl.window_rule({
     opacity = 0.8,
     border_size = 0,
     size = dec.SIZE_WINDOW,
+    center = true,
     float = true,
     workspace = 1
 })
@@ -190,6 +192,15 @@ hl.window_rule({
     center = true,
     workspace = 5
 })
+hl.window_rule({
+    name = "Open Document",
+    match = {
+        class = ".*Open Document .*"
+    },
+    border_size = 0,
+    center = 1
+
+})
 
 hl.window_rule({
     name = "obsidian",
@@ -236,7 +247,7 @@ hl.window_rule({
     float = 1,
     center = 1,
     size = dec.SIZE_WINDOW,
-    workspace = 11,
+    workspace = 10,
 })
 
 -- hl.window_rule({
@@ -251,7 +262,7 @@ hl.window_rule({
 hl.window_rule({
     name = "files",
     match = {
-        title = ".*Открыть документ|Сохранить как.*"
+        title = ".*Открыть документ|Сохранить как|Save As.*"
     },
     float = 1,
     border_size = 0,
