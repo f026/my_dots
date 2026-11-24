@@ -64,7 +64,7 @@ hl.window_rule({
     workspace = 2
 })
 hl.window_rule({
-    name = "DeepSeek",
+    name = "AI",
     match = {
         title = ".*DeepSeek.*"
     },
@@ -94,10 +94,10 @@ hl.window_rule({
     match = {
         class = "steam"
     },
-    center = true,
     border_size = 0,
     workspace = 3
 })
+
 hl.window_rule({
     name = "ETS2",
     match={
@@ -188,9 +188,11 @@ hl.window_rule({
     match = {
         class = "ONLYOFFICE"
     },
+    tile = true,
     border_size = 0,
     center = true,
-    workspace = 5
+    workspace = 5,
+    -- decorate = false,
 })
 hl.window_rule({
     name = "Open Document",

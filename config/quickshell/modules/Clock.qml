@@ -1,43 +1,45 @@
 import QtQuick
+import "../DynamicTheme"
 
-Rectangle {
-    width: 20
-    height: 30
-    color: "transparent"
-    radius: 6
-    
+Item {
+    id: root
+    property int clockOffsetY: -1
+    width: 18
+    height: 4
+
     Text {
         id: clockText
-        color: "#ebdbb2"
+
+        anchors {
+    verticalCenter: parent.verticalCenter
+    verticalCenterOffset: root.clockOffsetY
+    right: parent.right
+    rightMargin: 4
+}
+
+        color: Theme.primary
         font.pixelSize: 14
-        text: "time"
-        anchors{
-            top:parent.top
-            rightMargin:10
-            right:parent.right
+        font.weight: Font.Bold
+
+        function updateTime() {
+            clockText.text = Qt.formatTime(new Date(), "HH:mm")
         }
 
-            font.weight: Font.Bold
-        
+        Component.onCompleted: updateTime()
+
         Timer {
-            interval: 10
+            interval: 1000
             repeat: true
             running: true
-            onTriggered: {
-                var date = new Date()
-                var hours = date.getHours()
-                var minutes = date.getMinutes()
-                var hoursStr = hours < 10 ? "0" + hours : "" + hours
-                var minutesStr = minutes < 10 ? "0" + minutes : "" + minutes
-                var timeString = hoursStr + ":" + minutesStr
-                
-                console.log("Time:", timeString)
-                
-                // Принудительное обновление через Qt.callLater
-                Qt.callLater(function() {
-                    clockText.text = timeString
-                })
+            onTriggered: clockText.updateTime()
+        }
+
+        Behavior on color {
+            ColorAnimation {
+                duration: Theme.animationDuration
+                easing.type: Easing.InOutCubic
             }
         }
     }
 }
+

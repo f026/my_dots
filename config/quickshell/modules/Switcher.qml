@@ -1,10 +1,306 @@
+
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Io
-import Quickshell.Hyprland
+import Quickshell.Wayland
+import "../DynamicTheme"
 
 PanelWindow {
     id: root
+
+    // ==========================================
+    // SWITCHER ENGINE
+    // ==========================================
+
+    property var windows: []
+
+    property string activeAddress: ""
+    property string selectedAddress: ""
+    property int selectedIndex: -1
+
+    property bool isActive: false
+    property bool loading: false
+    property bool pendingBegin: false
+    property bool pendingStickyMode: true
+    // Получение окон Hyprland
+    function refresh() {
+        if (clientsProcess.running)
+            return
+
+        loading = true
+        clientsProcess.running = true
+    }
+
+    // Разбор JSON
+    function parseWindows(data) {
+        try {
+            const clients = JSON.parse(data)
+
+            const result = clients
+                .filter(window =>
+                    window.mapped === true
+                    && window.address
+                )
+                .sort((a, b) =>
+                    a.focusHistoryID - b.focusHistoryID
+                )
+
+            windows = result
+
+            const focused = result.find(
+                window => window.focusHistoryID === 0
+            )
+
+            activeAddress = focused
+                ? focused.address
+                : ""
+
+            if (isActive) {
+                const index = result.findIndex(
+                    window => window.address === selectedAddress
+                )
+
+                if (index !== -1) {
+                    selectedIndex = index
+                } else {
+                    selectedIndex = 0
+                    updateSelection()
+                }
+            }
+
+            console.log(
+                "[Switcher] Windows:",
+                windows.length
+            )
+
+        } catch (error) {
+            console.warn(
+                "[Switcher] JSON error:",
+                error
+            )
+        }
+
+        loading = false
+
+        if (pendingBegin) {
+            pendingBegin = false
+            startSelection(pendingStickyMode)
+        }
+    }
+
+    // Обновление выбранного окна
+    function updateSelection() {
+        if (windows.length === 0) {
+            selectedIndex = -1
+            selectedAddress = ""
+            return
+        }
+        selectedIndex =
+            (selectedIndex + windows.length)
+            % windows.length
+
+        selectedAddress =
+            windows[selectedIndex].address
+
+        console.log(
+            "[Switcher] Selected:",
+            windows[selectedIndex].class,
+            windows[selectedIndex].title
+        )
+    }
+
+    // Поиск иконки приложения по desktop entry
+    function appIcon(window) {
+        const candidates = [
+            window.class,
+            window.initialClass
+        ]
+
+        for (const candidate of candidates) {
+            if (!candidate)
+                continue
+
+            const entry = DesktopEntries.heuristicLookup(candidate)
+
+            if (entry && entry.icon)
+                return Quickshell.iconPath(entry.icon)
+        }
+
+        return ""
+    }
+
+    // Начало переключения
+function begin(stickyMode) {
+    pendingBegin = true
+    pendingStickyMode = stickyMode
+
+    refresh()
+}
+
+// Выбор начального окна после обновления списка
+function startSelection(stickyMode) {
+    if (windows.length === 0) {
+        isActive = false
+        return
+    }
+
+    isActive = true
+
+    let currentIndex = windows.findIndex(
+        window => window.address === activeAddress
+    )
+
+    if (currentIndex === -1)
+        currentIndex = 0
+
+    selectedIndex = stickyMode
+        ? currentIndex
+        : currentIndex + 1
+
+    updateSelection()
+
+    console.log("[Switcher] Started")
+}
+
+            // Alt + Tab
+        function tab() {
+    if (!isActive)
+        begin(true)
+    else
+        cycle(1)
+  }
+
+    // Навигация между окнами
+    function cycle(direction) {
+        if (!isActive || windows.length === 0)
+            return
+
+        selectedIndex += direction > 0 ? 1 : -1
+        updateSelection()
+    }
+
+    // Подтверждение выбора
+    function commit() {
+        if (!isActive || !selectedAddress)
+            return
+
+        const address = selectedAddress
+        isActive = false
+        focusWindow(address)
+    }
+
+    // Отмена переключения
+    function cancel() {
+        isActive = false
+        pendingBegin = false
+        selectedAddress = ""
+        selectedIndex = -1
+    }
+
+    // Фокусировка через Lua API Hyprland 0.57.2
+    function focusWindow(address) {
+        if (!address || focusProcess.running)
+            return
+
+        focusProcess.command = [
+            "hyprctl",
+            "dispatch",
+            "hl.dsp.focus({ window = \"address:" + address + "\" })"
+        ]
+
+        focusProcess.running = true
+    }
+
+    // ==========================================
+    // PROCESSES
+    // ==========================================
+
+    property Process clientsProcess: Process {
+        command: [
+            "hyprctl",
+            "-j",
+            "clients"
+        ]
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                root.parseWindows(text)
+            }
+        }
+
+        stderr: StdioCollector {
+            onStreamFinished: {
+                if (text.length > 0)
+                    console.warn("[Switcher]", text)
+            }
+        }
+    }
+
+    property Process focusProcess: Process {
+        command: []
+    }
+
+    // ==========================================
+    // IPC
+    // ==========================================
+
+    property IpcHandler ipcHandler: IpcHandler {
+        target: "switcher"
+
+        function refresh(): void {
+            root.refresh()
+        }
+
+        function begin(stickyMode: bool): void {
+            root.begin(stickyMode)
+        }
+
+        function next(): void {
+            root.cycle(1)
+        }
+        function tab(): void {
+            root.tab()
+        }
+        
+function confirm() {
+    commit()
+}
+
+function dismiss() {
+    cancel()
+}
+
+        function prev(): void {
+            root.cycle(-1)
+        }
+
+        function commit(): void {
+            root.commit()
+        }
+
+        function cancel(): void {
+            root.cancel()
+        }
+
+        function getSelection(): string {
+            return root.selectedAddress
+        }
+
+        function getWindowCount(): int {
+            return root.windows.length
+        }
+    }
+
+    Component.onCompleted: refresh()
+
+    // ==========================================
+    // WINDOW SETTINGS
+    // ==========================================
+
+    visible: isActive
+
+    screen: Quickshell.screens[0]
 
     anchors {
         top: true
@@ -13,507 +309,313 @@ PanelWindow {
         right: true
     }
 
-    exclusionMode: ExclusionMode.Ignore
+    exclusiveZone: -1
     color: "transparent"
 
-    visible: switching
+    WlrLayershell.layer: WlrLayershell.Overlay
+    WlrLayershell.keyboardFocus: WlrLayershell.OnDemand
+    Item {
+    id: keyboardHandler
 
-    property bool switching: false
-    property int selectedIndex: 0
-    property int activeIndex: 0
-    property string selectedAddress: ""
-    property int focusDelay: 150
-    property var pendingWindow: null
+    anchors.fill: parent
+    focus: root.isActive
 
-    Timer {
-        id: focusTimer
-
-        interval: root.focusDelay
-
-        onTriggered: {
-            root.applyFocus()
-        }
-    }
-
-    IpcHandler {
-        target: "switcher"
-
-        function next() {
-            root.next()
-        }
-
-        function previous() {
-            root.previous()
-        }
-
-        function commit() {
-        if (!switching)
+    Keys.onPressed: event => {
+        if (!root.isActive)
             return
 
-        const list = windows()
-
-        if (selectedIndex < 0 || selectedIndex >= list.length) {
-            switching = false
-            return
+        if (event.key === Qt.Key_Return ||
+            event.key === Qt.Key_Enter) {
+            root.commit()
+            event.accepted = true
         }
-
-        const window = list[selectedIndex]
-
-        if (!window) {
-            switching = false
-            return
-        }
-
-        console.log(
-            "Switcher commit:",
-            window.title,
-            "focus in", focusDelay, "ms"
-        )
-
-        pendingWindow = window
-        switching = false
-
-        focusTimer.restart()
-    }
-
-    function applyFocus() {
-        const window = pendingWindow
-        pendingWindow = null
-
-        if (!window)
-            return
-
-        const address = String(window.address)
-
-        const ipc = window.lastIpcObject
-        const sid = ipc
-            ? (ipc.stableId || ipc.stableid || "")
-            : ""
-
-        console.log(
-            "Switcher focus:",
-            window.title,
-            address,
-            "stableid:", sid
-        )
-
-        if (sid !== "" && Hyprland.usingLua) {
-            Hyprland.dispatch(
-                'dispatch hl.dsp.focus({ window = "stableid:' +
-                sid +
-                '" })'
-            )
-        } else if (window.wayland) {
-            window.wayland.activate()
-        } else if (Hyprland.usingLua) {
-            Hyprland.dispatch(
-                'dispatch hl.dsp.focus({ window = "address:' +
-                address +
-                '" })'
-            )
-        } else {
-            Hyprland.dispatch(
-                "dispatch focuswindow address:" +
-                address
-            )
-        }
-
-        activeIndex = currentIndex()
-        selectedIndex = activeIndex
-        selectedAddress = ""
-    }
-
-    function clear() {
-            root.clear()
-        }
-
-        function cancel() {
+        else if (event.key === Qt.Key_Escape) {
             root.cancel()
-        }
-    }
-
-    function windows() {
-        return Hyprland.toplevels.values
-    }
-
-    function windowCount() {
-        return Hyprland.toplevels.values.length
-    }
-
-    function currentIndex() {
-        const list = windows()
-
-        for (let i = 0; i < list.length; ++i) {
-            const window = list[i]
-
-            if (window && window.activated)
-                return i
-        }
-
-        return 0
-    }
-
-    function updateSelectedAddress() {
-        const list = windows()
-
-        if (
-            selectedIndex >= 0 &&
-            selectedIndex < list.length &&
-            list[selectedIndex]
-        ) {
-            selectedAddress =
-                list[selectedIndex].address
-
-            console.log(
-                "Switcher selected:",
-                list[selectedIndex].title,
-                selectedAddress
-            )
-        }
-    }
-
-    function start() {
-        const count = windowCount()
-
-        console.log("Switcher count:", count)
-
-        if (count === 0)
-            return
-
-        Hyprland.refreshToplevels()
-
-        activeIndex = currentIndex()
-
-        if (count > 1) {
-            selectedIndex =
-                (activeIndex + 1) % count
-        } else {
-            selectedIndex = activeIndex
-        }
-
-        updateSelectedAddress()
-
-        switching = true
-
-        console.log(
-            "Switcher started:",
-            "active =", activeIndex,
-            "selected =", selectedIndex
-        )
-    }
-
-    function next() {
-        const count = windowCount()
-
-        if (count === 0)
-            return
-
-        if (!switching) {
-            start()
-            return
-        }
-
-        if (count === 1)
-            return
-
-        selectedIndex =
-            (selectedIndex + 1) % count
-
-        updateSelectedAddress()
-
-        console.log(
-            "Switcher next:",
-            selectedIndex
-        )
-    }
-
-    function previous() {
-        const count = windowCount()
-
-        if (count === 0)
-            return
-
-        if (!switching) {
-            start()
-            return
-        }
-
-        if (count === 1)
-            return
-
-        selectedIndex =
-            (selectedIndex - 1 + count) % count
-
-        updateSelectedAddress()
-
-        console.log(
-            "Switcher previous:",
-            selectedIndex
-        )
-    }
-
-    function commit() {
-        if (!switching)
-            return
-
-        const list = windows()
-
-        if (
-            selectedIndex < 0 ||
-            selectedIndex >= list.length
-        ) {
-            switching = false
-            return
-        }
-
-        const window = list[selectedIndex]
-
-        if (!window) {
-            switching = false
-            return
-        }
-
-        const address = String(window.address)
-
-        console.log(
-            "Switcher commit:",
-            window.title,
-            address
-        )
-
-        const ipc = window.lastIpcObject
-        const sid = ipc
-            ? (ipc.stableId || ipc.stableid || "")
-            : ""
-
-        console.log("Switcher stableid:", sid)
-
-        if (sid !== "" && Hyprland.usingLua) {
-            Hyprland.dispatch(
-                'dispatch hl.dsp.focus({ window = "stableid:' +
-                sid +
-                '" })'
-            )
-        } else if (window.wayland) {
-            window.wayland.activate()
-        } else if (Hyprland.usingLua) {
-            Hyprland.dispatch(
-                'dispatch hl.dsp.focus({ window = "address:' +
-                address +
-                '" })'
-            )
-        } else {
-            Hyprland.dispatch(
-                "dispatch focuswindow address:" +
-                address
-            )
-        }
-
-        switching = false
-
-        activeIndex = currentIndex()
-        selectedIndex = activeIndex
-        selectedAddress = ""
-    }
-
-    function clear() {
-        console.log("Switcher cleared")
-
-        focusTimer.stop()
-        pendingWindow = null
-        switching = false
-
-        activeIndex = currentIndex()
-        selectedIndex = activeIndex
-        selectedAddress = ""
-    }
-
-    function cancel() {
-        clear()
-    }
-
-    Connections {
-        target: Hyprland.toplevels
-
-        function onValuesChanged() {
-            const count = root.windowCount()
-
-            if (count === 0) {
-                focusTimer.stop()
-                root.pendingWindow = null
-                root.switching = false
-                root.selectedIndex = 0
-                root.activeIndex = 0
-                root.selectedAddress = ""
-                return
-            }
-
-            if (root.selectedIndex >= count)
-                root.selectedIndex = count - 1
-
-            if (root.activeIndex >= count)
-                root.activeIndex = root.currentIndex()
-
-            if (
-                root.switching &&
-                root.selectedAddress !== ""
-            ) {
-                const list = root.windows()
-
-                let found = false
-
-                for (let i = 0; i < list.length; ++i) {
-                    if (
-                        list[i] &&
-                        list[i].address === root.selectedAddress
-                    ) {
-                        root.selectedIndex = i
-                        found = true
-                        break
-                    }
-                }
-
-                if (!found)
-                    root.updateSelectedAddress()
-            }
-        }
-    }
-
-    Rectangle {
-        anchors.centerIn: parent
-
-        width: Math.min(
-            parent.width - 80,
-            Math.max(
-                500,
-                root.windowCount() * 160
-            )
-        )
-
-        height: 150
-
-        radius: 16
-
-        color: "#202020"
-
-        border.width: 1
-        border.color: "#454545"
-
-        Row {
-            anchors.centerIn: parent
-
-            spacing: 10
-
-            Repeater {
-                model: Hyprland.toplevels
-
-                delegate: Rectangle {
-                    required property int index
-                    required property var modelData
-
-                    width: 145
-                    height: 100
-
-                    radius: 10
-
-                    color: {
-                        if (index === root.selectedIndex)
-                            return "#505050"
-
-                        if (index === root.activeIndex)
-                            return "#303030"
-
-                        return "#2b2b2b"
-                    }
-
-                    border.width: {
-                        if (index === root.selectedIndex)
-                            return 3
-
-                        if (index === root.activeIndex)
-                            return 1
-
-                        return 0
-                    }
-
-                    border.color: {
-                        if (index === root.selectedIndex)
-                            return "white"
-
-                        return "#777777"
-                    }
-
-                    Rectangle {
-                        visible:
-                            index === root.activeIndex
-
-                        anchors {
-                            top: parent.top
-                            left: parent.left
-                            right: parent.right
-                        }
-
-                        height: 4
-
-                        radius: 2
-
-                        color: "#aaaaaa"
-                    }
-
-                    Text {
-                        anchors.centerIn: parent
-
-                        width: parent.width - 16
-
-                        text: modelData.title
-
-                        color: "white"
-
-                        horizontalAlignment:
-                            Text.AlignHCenter
-
-                        verticalAlignment:
-                            Text.AlignVCenter
-
-                        elide:
-                            Text.ElideRight
-
-                        maximumLineCount: 2
-                    }
-
-                    Text {
-                        anchors {
-                            bottom: parent.bottom
-                            horizontalCenter: parent.horizontalCenter
-                            bottomMargin: 6
-                        }
-
-                        text: (index + 1).toString()
-
-                        color: "#999999"
-
-                        font.pixelSize: 12
-                    }
-                }
-            }
-        }
-    }
-
-    Shortcut {
-        sequence: "Return"
-
-        onActivated: {
-            if (root.switching)
-                root.commit()
-        }
-    }
-
-    Shortcut {
-        sequence: "Escape"
-
-        onActivated: {
-            if (root.switching)
-                root.clear()
+            event.accepted = true
         }
     }
 }
+
+    // ==========================================
+    // BACKGROUND
+    // ==========================================
+
+    Rectangle {
+        anchors.fill: parent
+
+        color: "#80000000"
+
+        opacity: root.isActive ? 1 : 0
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 180
+                easing.type: Easing.OutCubic
+            }
+        }
+    }
+
+    // ==========================================
+    // SWITCHER PANEL
+    // ==========================================
+
+    Rectangle {
+        id: switcherPanel
+
+        anchors.centerIn: parent
+
+        // Максимум 5 карточек в строке, дальше перенос
+        // Ширина панели зависит от фактического количества колонок.
+        // Одна карточка не растягивает панель на две колонки.
+        width: Math.min(
+            root.width - 40,
+            Math.max(
+                220,
+                Math.min(root.windows.length, 5) * 145
+                    + (Math.min(root.windows.length, 5) - 1) * 10
+                    + 36
+            )
+        )
+
+        height: Math.min(
+            root.height - 40,
+            Math.max(205, cardGrid.implicitHeight + 112)
+        )
+
+        radius: 18
+
+        color: Theme.background
+
+        border.width: 1
+        border.color: Theme.border
+
+        opacity: root.isActive ? 1 : 0
+        scale: root.isActive ? 1 : 0.94
+
+        Behavior on opacity {
+            NumberAnimation {
+                duration: 180
+                easing.type: Easing.OutCubic
+            }
+        }
+
+        Behavior on scale {
+            NumberAnimation {
+                duration: 220
+                easing.type: Easing.OutCubic
+            }
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 18
+
+            spacing: 14
+
+            // Заголовок
+            RowLayout {
+                Layout.fillWidth: true
+
+                Text {
+                    text: "Window Switcher"
+
+                    color: Theme.text
+
+                    font.pixelSize: 15
+                    font.weight: Font.Bold
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Text {
+                    text: root.windows.length + " windows"
+
+                    color: Theme.subtext
+
+                    font.pixelSize: 11
+                }
+            }
+
+            // Карточки: адаптивная сетка с вертикальной прокруткой
+            Flickable {
+                id: cards
+
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+
+                contentWidth: width
+                contentHeight: cardGrid.implicitHeight
+
+                clip: true
+                flickableDirection: Flickable.VerticalFlick
+
+                Grid {
+                    id: cardGrid
+
+                    columns: Math.max(1, Math.min(5, root.windows.length))
+                    spacing: 10
+
+                    // Сетка имеет ширину только по своим колонкам
+                    // и центрируется внутри Flickable.
+                    width: columns * 145 + (columns - 1) * spacing
+                    x: Math.max(0, (cards.width - width) / 2)
+
+                    Repeater {
+                        model: root.windows
+
+                        delegate: Rectangle {
+                            id: card
+
+                            required property var modelData
+                            required property int index
+
+                            width: 145
+                            height: 132
+
+                            radius: 13
+
+                            property bool selected:
+                                modelData.address === root.selectedAddress
+
+                            color: selected
+                                ? Theme.primary
+                                : Theme.surface
+
+                            border.width: selected ? 2 : 1
+                            border.color: selected
+                                ? Theme.accent
+                                : Theme.border
+
+                            Behavior on color {
+                                ColorAnimation { duration: 180 }
+                            }
+
+                            Behavior on border.color {
+                                ColorAnimation { duration: 180 }
+                            }
+
+                            ColumnLayout {
+                                anchors.fill: parent
+                                anchors.margins: 10
+                                spacing: 7
+
+                                Item {
+                                    Layout.alignment: Qt.AlignHCenter
+                                    width: 48
+                                    height: 48
+
+                                    Rectangle {
+                                        anchors.fill: parent
+                                        radius: 13
+                                        color: card.selected
+                                            ? Theme.primaryForeground
+                                            : Theme.surfaceVariant
+                                    }
+
+                                    Image {
+                                        id: appIconImage
+                                        anchors.centerIn: parent
+                                        width: 34
+                                        height: 34
+                                        source: root.appIcon(card.modelData)
+                                        sourceSize.width: 96
+                                        sourceSize.height: 96
+                                        fillMode: Image.PreserveAspectFit
+                                        smooth: true
+                                        visible: status === Image.Ready
+                                    }
+
+                                    Text {
+                                        anchors.centerIn: parent
+                                        visible: !appIconImage.visible
+                                        text: {
+                                            const app = card.modelData.class || "?"
+                                            return app.charAt(0).toUpperCase()
+                                        }
+                                        color: card.selected
+                                            ? Theme.primary
+                                            : Theme.text
+                                        font.pixelSize: 23
+                                        font.weight: Font.Bold
+                                    }
+                                }
+
+                                // Класс приложения
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: card.modelData.title || card.modelData.class || "Unknown"
+                                    color: card.selected
+                                        ? Theme.primaryForeground
+                                        : Theme.text
+                                    font.pixelSize: 12
+                                    font.weight: Font.Bold
+                                    horizontalAlignment: Text.AlignHCenter
+                                    elide: Text.ElideRight
+                                }
+
+                                // Заголовок окна
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: card.modelData.title || "Untitled"
+                                    color: card.selected
+                                        ? Theme.primaryForeground
+                                        : Theme.subtext
+                                    font.pixelSize: 10
+                                    horizontalAlignment: Text.AlignHCenter
+                                    elide: Text.ElideRight
+                                }
+
+                                Text {
+                                    Layout.fillWidth: true
+                                    text: "Workspace " +
+                                        (card.modelData.workspace
+                                            ? card.modelData.workspace.name
+                                            : "?")
+                                    color: card.selected
+                                        ? Theme.primaryForeground
+                                        : Theme.subtext
+                                    font.pixelSize: 9
+                                    horizontalAlignment: Text.AlignHCenter
+                                }
+                            }
+
+                            scale: card.selected ? 1.035 : 1
+                            Behavior on scale {
+                                NumberAnimation { duration: 160 }
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Нижняя подсказка
+            RowLayout {
+                Layout.fillWidth: true
+
+                Text {
+                    text: "ALT + TAB"
+
+                    color: Theme.accent
+
+                    font.pixelSize: 10
+                    font.weight: Font.Bold
+                }
+
+                Item {
+                    Layout.fillWidth: true
+                }
+
+                Text {
+                    text: "ENTER  Select    ESC  Cancel"
+
+                    color: Theme.subtext
+
+                    font.pixelSize: 10
+                }
+            }
+        }
+    }
+}
+

@@ -1,29 +1,31 @@
 import Quickshell
 import Quickshell.Io
 import QtQuick
+import "../DynamicTheme"
 
 Item {
     id: root
 
-    property string command: "~/.config/quickshell/scripts/kb_layout.sh"
+    property string command: Quickshell.env("HOME") + "/.config/quickshell/scripts/kb_layout.sh"
     property string layout: ""
 
     Process {
         id: listener
-        command: root.command !== "" ? ["sh", "-c", root.command] : []
+
+        command: ["bash", root.command]
         running: root.command !== ""
 
         stdout: SplitParser {
             onRead: data => {
                 let trimmed = data.trim()
-                if (trimmed) {
+
+                if (trimmed !== "" && trimmed !== root.layout) {
                     root.layout = trimmed
                 }
             }
         }
     }
 
-    // Уменьшенная ширина
     width: kbRow.width + 8
     height: 24
 
@@ -31,20 +33,20 @@ Item {
         anchors.fill: parent
         radius: 8
         opacity: 0.65
-        color:"transparent"
-        
-        
+        color: "transparent"
     }
 
     Row {
-        id: kbRow 
-        anchors{
-            top:parent.top
-            topMargin:-1
-            rightMargin:20
-            right:parent.right
-        }
+        id: kbRow
+
+        anchors {
+    verticalCenter: parent.verticalCenter
+    right: parent.right
+    rightMargin: 30
+}
+
         spacing: 2
+
         Text {
             font.family: "Mononoki Nerd Font Propo"
             font.pixelSize: 14
@@ -53,7 +55,7 @@ Item {
 
         Text {
             text: root.layout
-            color: "#ebdbb2"
+            color: Theme.primary
             font.family: "Mononoki Nerd Font Propo"
             font.pixelSize: 15
             font.weight: Font.Bold

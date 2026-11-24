@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell
 import Quickshell.Io
+import "../DynamicTheme"
 
 Rectangle {
     id: root
@@ -15,7 +16,7 @@ Rectangle {
     
     anchors {
         centerIn: parent
-        topMargin: 4
+        // topMargin: -4
         rightMargin: 12
     }
     
@@ -25,20 +26,27 @@ Rectangle {
     property string lastTrack: ""
     
     Text {
-        id: playPauseIcon
-        text: playState
-        color: "#ebdbb2"
-        font {
-            family: "Hack Nerd Font"
-            pixelSize: 12
-        }
-        anchors {
-            left: parent.left
-            leftMargin: 8
-            verticalCenter: parent.verticalCenter
-        }
-        z: 1
+    id: playPauseIcon
+    text: playState
+    color: Theme.primary
+
+    width: 16
+    horizontalAlignment: Text.AlignHCenter
+    verticalAlignment: Text.AlignVCenter
+
+    font {
+        family: "Hack Nerd Font"
+        pixelSize: 12
     }
+
+    anchors {
+        left: parent.left
+        leftMargin: 8
+        verticalCenter: parent.verticalCenter
+    }
+
+    z: 1
+}
     
     Item {
         id: marqueeContainer
@@ -55,7 +63,7 @@ Rectangle {
         Text {
             id: trackText
             text: root.trackInfo
-            color: "#ebdbb2"
+            color: Theme.primary
             font.pixelSize: 12
             font.weight: Font.Bold
             anchors.verticalCenter: parent.verticalCenter
@@ -122,37 +130,36 @@ Rectangle {
     }
     
     Process {
-        id: statusProc
-        command: ["sh", "-c", "playerctl status 2>/dev/null"]
-        
-        stdout: StdioCollector {
-            onStreamFinished: {
-                var status = this.text.trim()
-                if (status === "Playing") {
-                    root.playState = "▶"
-                } else if (status === "Paused") {
-                    root.playState = "⏸"
-                } else {
-                    root.playState = "⏹"
-                }
-                statusRestartTimer.start()
+    id: statusProc
+
+    command: ["playerctl", "status", "--follow"]
+    running: true
+
+    stdout: SplitParser {
+        onRead: data => {
+            var status = data.trim()
+
+            if (status === "Playing") {
+                root.playState = "▶"
+            } else if (status === "Paused") {
+                root.playState = "⏸"
+            } else {
+                root.playState = "⏹"
             }
         }
     }
+}
     
     Timer {
-        id: restartTimer
-        interval: 3
-        repeat: false
-        onTriggered: mediaProc.running = true
+    id: restartTimer
+    interval: 3000
+    repeat: false
+    onTriggered: {
+        if (!mediaProc.running)
+            mediaProc.running = true
     }
-    
-    Timer {
-        id: statusRestartTimer
-        interval: 30
-        repeat: false
-        onTriggered: statusProc.running = true
-    }
+}
+
     
     // MouseArea {
     //     anchors.fill: parent

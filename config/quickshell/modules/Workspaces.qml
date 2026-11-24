@@ -1,58 +1,93 @@
+
 import QtQuick
 import Quickshell
 import Quickshell.Hyprland
+import "../DynamicTheme"
 
 Item {
     height: 30
     width: childrenRect.width
-    
+
     Row {
         id: row
         spacing: -2
-        
+
         anchors {
             top: parent.top
-            topMargin: -2
+            // topMargin: 0
             left: parent.left
-            leftMargin: 8
+            leftMargin: -2
         }
-        
+
         Repeater {
-            model: Hyprland.workspaces  // Используем модель воркспейсов
-            
+            model: Hyprland.workspaces
+
             Rectangle {
                 width: 24
                 height: 26
                 radius: 12
-                visible: isActive || modelData.windows.length > 0  // Показываем только активный или с окнами
-                property bool isActive: modelData.id === Hyprland.focusedWorkspace.id
-                
+
+                visible: isActive || modelData.windows.length > 0
+
+                property bool isActive:
+                    modelData.id === Hyprland.focusedWorkspace.id
+
+                property bool hovered: false
+
                 color: "transparent"
-                
+
                 Text {
                     anchors.centerIn: parent
+
                     text: getIcon(isActive)
-                    color: isActive ? "#ebdbb2" : "#504945"
+
+                    color: {
+                        if (isActive)
+                            return Theme.primary
+
+                        if (parent.hovered)
+                            return Theme.secondary
+
+                        return Theme.subtext
+                    }
+
                     font {
                         family: "Hack Nerd Font"
                         weight: Font.Bold
-                        pixelSize: 26
+                        pixelSize: 20
+                    }
+
+                    Behavior on color {
+                        ColorAnimation {
+                            duration: 180
+                            easing.type: Easing.InOutCubic
+                        }
                     }
                 }
-                
+
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: Hyprland.dispatch("workspace", modelData.id)
+                    hoverEnabled: true
+
+                    onEntered: parent.hovered = true
+                    onExited: parent.hovered = false
+
+                    onClicked: {
+                        Hyprland.dispatch(
+                            "workspace",
+                            modelData.id
+                        )
+                    }
                 }
             }
         }
     }
-    
+
     function getIcon(isActive) {
-        if (isActive) {
-            return ""  // активный
-        } else {
-            return "󰧟"  // неактивный с окнами
-        }
+        if (isActive)
+            return ""
+
+        return "󰧟"
     }
 }
+
